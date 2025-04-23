@@ -1,4 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Target
+
+**接口只提供5天免费的预报**
+
+- [x] 实现一个单页应用,显示上海未来七天内的温度和天气。 需要有一定的样式。
+  - [x] 1.react + typescript实现。
+  - [x] 2.接口自己查找, 需要实时数据。
+      * Accu weather api
+    
+  - [x] 3.附加需求:页面上提供输入可以切换城市。
 
 ## Getting Started
 
@@ -22,7 +31,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Next.js + React.js + material-tailwind
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -31,8 +40,3 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
