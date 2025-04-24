@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { Typography, Card, Spinner } from "@material-tailwind/react";
+import { Card, Spinner } from "@material-tailwind/react";
 import { LocationSelector } from "@/components/LocationSelector";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FORECAST from "@/mockData/forecast5DaysShangHai";
 import { WeatherCard } from "@/components/WeatherCard";
 import { DailyWeather } from "@/types/DailyWeather";
@@ -10,7 +10,7 @@ export default function Home() {
   const [dailyWeatherList, setDailyWeatherList] = useState<DailyWeather[]>(
     FORECAST.DailyForecasts
   );
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleLocationChange = (
     val: string | undefined,
@@ -19,15 +19,26 @@ export default function Home() {
     setIsLoading(true);
     if (id) {
       fetch(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${id}?apikey=jc7Pt05hTubGsx42JJTyrL37jFeMqHkG&details=false&metric=false`
+        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${id}?apikey=jc7Pt05hTubGsx42JJTyrL37jFeMqHkG&details=false&metric=false`
       )
         .then((res) => res.json())
         .then((res) => {
-          setDailyWeatherList(res.DailyForecasts)
+          setDailyWeatherList(res.DailyForecasts);
           setIsLoading(false);
         });
     }
   };
+
+  useEffect(() => {
+    fetch(
+      `https://dataservice.accuweather.com/forecasts/v1/daily/5day/106577?apikey=jc7Pt05hTubGsx42JJTyrL37jFeMqHkG&details=false&metric=false`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setDailyWeatherList(res.DailyForecasts);
+        setIsLoading(false);
+      });
+  }, []);
   return (
     <>
       <Head>
@@ -49,11 +60,11 @@ export default function Home() {
           </Card>
         </div>
         {(isLoading && (
-          <div className="flex flex-row gap-2 pt-56 pb-40 text-center">
+          <div className="flex flex-row gap-2 text-center">
             <Spinner className="m-auto h-12 w-12" />
           </div>
         )) || (
-          <div className="flex flex-col lg:flex-row gap-2 pt-56 pb-40 text-center">
+          <div className="flex flex-col lg:flex-row gap-2 max-h-[200px] text-center">
             <div className="flex-1"></div>
             {new Array(5).fill(1).map((_, index) => (
               <WeatherCard key={index} weather={dailyWeatherList[index]} />

@@ -55,7 +55,7 @@ export function WeatherCard(props: Props) {
       </Typography>
       <Typography
         color="blue-gray"
-        className="font-normal opacity-70 mb-7"
+        className="font-normal opacity-70"
         placeholder=""
       >
         {props.weather.Temperature.Minimum.Value}°
